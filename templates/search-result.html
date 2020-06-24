@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% extends 'players.html' %}
+
+<script>
+function show_statistics() {
+
+        {% block jquery %}
+
+        // var name = document.getElementById("nameInput");
+        // var nameStr = name.value;
+        // var nationality = document.getElementById("nationalityInput");
+        // var nationalityStr = name.value;
+        // var club = document.getElementById("clubInput");
+        // var clubStr = name.value;
+        //
+        // var criteria = "?";
+        // var endpoint = 'http://127.0.0.1:5000/results';
+        //
+        // if (nameStr.length > 0)
+        //     criteria = criteria.concat('name','=',nameStr)
+        //
+        // if (nationalityStr.length > 0)
+        //     if(criteria.length > 1)
+        //         criteria = criteria.concat('&nationality','=',nationalityStr)
+        //     else
+        //         criteria = criteria.concat('nationality','=',nationalityStr)
+        //
+        // if (clubStr.length > 0)
+        //     if(criteria.length > 1)
+        //         criteria = criteria.concat('&club','=',clubStr)
+        //     else
+        //         criteria = criteria.concat('club','=',clubStr)
+        //
+        // if(criteria.length > 1)
+        //     endpoint = endpoint.concat(criteria)
+        //
+        // console.log(endpoint)
+
+
+        // $.ajax({
+        //     method: "GET",
+        //     url: endpoint,
+        //     success: function (data) {
+        //         labels = data.labels;
+        //         updateTable("dataFrame", data.data_frame)
+        //     },
+        //     error: function (error_data) {
+        //         alert("Error: " + error_data.responseJSON['error'])
+        //     }
+        // });
+        debugger;
+        var data = {{ data }}
+
+        updateTable("dataFrame", data.data_frame)
+
+
+        function updateTable(tableId, jsonData) {
+            var tableHTML = "<tr>";
+            tableHTML += "<th>" + "entity" + "</th>";
+            for (var headers in jsonData) {
+                tableHTML += "<th>" + headers + "</th>";
+            }
+            tableHTML += "</tr>";
+
+            var entitiesNames = Object.keys(jsonData['count']);
+            for (var eachItem in entitiesNames) {
+                var entityName = entitiesNames[eachItem];
+                tableHTML += "<tr>";
+                tableHTML += "<td>" + entitiesNames[eachItem] + "</td>";
+
+                for (var eachValue in jsonData) {
+                    tableHTML += "<td>" + jsonData[eachValue][entityName] + "</td>";
+                }
+                tableHTML += "</tr>";
+            }
+
+            document.getElementById(tableId).innerHTML = tableHTML;
+        }
+
+        {% endblock %}
+
+    }
+</script>
+
+</html>

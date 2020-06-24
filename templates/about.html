@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About</title>
+    <!-- Load Font Awesome Icon Library -->
+    {% include 'includes/header.html' %}
+    {% include 'base/css.html' %}
+    {% include 'base/base.html' %}
+
+    <style>
+
+        img {
+            border-radius: 5px 5px 0 0;
+            width: 100px;
+            height: 150px;
+            margin: 0 auto;
+        }
+
+        .tex-container {
+            margin: 0 1%;
+        }
+
+        .container {
+            margin: 0 5%;
+        }
+
+    </style>
+
+</head>
+
+<body>
+<br><br>
+<div class="tex-container">
+    <h3>AIMS:</h3>
+
+    <ul>
+        <li>
+            To analyse our converter tasks and backend datasets in order to create insights that show us some relevant
+            properties inside the data.
+        </li>
+        <br>
+        <li>
+            Use the above results to mesure performance and help the converter decision making in the queueing process.
+        </li>
+    </ul>
+    <br><br>
+
+
+    <h3>Environments:</h3>
+    <ul>
+        <li>
+            We analysed the results for the environments <strong>"dev"</strong>, <strong>"staging"</strong>, <strong>"production"</strong>.
+        </li>
+    </ul>
+    <br><br>
+    <h3>Analyses:</h3>
+    <ul>
+        <li>by <strong>Source extension</strong> (Analysis based on the file type of the converted files).</li>
+        <br>
+        <li>by <strong>Single File</strong> (Analysis based on a single file type. You can remove outliers and other
+            actions).
+        </li>
+        <br>
+        <li>by <strong>Size</strong> (Analysis based on the size of the converted files).</li>
+        <br>
+        <li>by <strong>Company</strong> (Analysis based on data from our clients' companies).</li>
+        <br>
+        <li>by <strong>User</strong> (Analysis based on our customers' user data).</li>
+        <br>
+        <li>by <strong>Session</strong> (Analysis based on our clients' session data).</li>
+        <br>
+        <li>by <strong>Months</strong> (Analysis based on data from the last 6 months).</li>
+        <br>
+        <li>by <strong>Weekdays</strong> (Analysis based on data grouped by days of the week).</li>
+        <br>
+        <li>by <strong>Hours</strong> (Analysis based on data grouped by time of day).</li>
+        <br>
+
+    </ul>
+    <br><br>
+
+    <h3>URL's:</h3>
+    <ul>
+        <li>"Get "http://0.0.0.0:8000/analyses/*entity*/*analysis*/*environment*/' + ?name="name"</li>
+        <li>Get "http://0.0.0.0:8000/analyses/*entity*/*environment*/' + ?name="name"</li>
+
+    </ul>
+    <h4>variables:</h4>
+    <ul>
+        <li>entity: 'session', 'user', 'company', 'weekly', 'daily', 'source_extension', 'monthly', 'size'</li>
+        <li>analysis: 'session', 'user', 'company', 'weekly', 'daily', 'source_extension', 'monthly', 'size'</li>
+        <li>environment: 'dev', 'staging', 'production'</li>
+
+    </ul>
+    <br><br>
+    <h3>METHODS:</h3>
+    <ul>
+        <li>
+            Combining the Python Pandas libraries for data analysis and Matplotlib to visualise the results and create
+            graphics and tables.
+        </li>
+    </ul>
+    <br><br>
+
+
+</div>
+
+
+<!--    // style="width:50px;height:60px;">-->
+<br><br><br><br>
+
+
+</body>
+
+{% include 'includes/footer.html' %}
+
+</html>

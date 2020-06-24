@@ -1,0 +1,112 @@
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {box-sizing: border-box;}
+
+    .button {
+  /*background-color: #008CBA;*/
+   background-color: white;
+  color: black;
+  border: 2px solid #4CAF50;
+}
+
+    .button:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.header {
+            overflow: hidden;
+            background-color: #030C22;
+
+        {
+            #background-color: #1F2A1A
+        ;
+
+        }
+        padding:
+
+        1
+        rem
+
+        ;
+        }
+
+        .header a {
+            float: left;
+            color: white;
+            text-align: center;
+            padding: 12px;
+            text-decoration: none;
+            font-size: 18px;
+            line-height: 25px;
+            border-radius: 4px;
+        }
+
+        .header a.logo {
+            font-size: 30px;
+            font-weight: bolder;
+        }
+
+        .header a:hover {
+            background-color: #cc7a00;
+            color: white;
+        }
+
+        .header a.active {
+            background-color: dodgerblue;
+            color: white;
+        }
+
+        .header-right {
+            float: right;
+        }
+
+ /* Style buttons */
+.btn {
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  padding: 12px 16px; /* Some padding */
+  font-size: 22px; /* Set a font size */
+  cursor: pointer; /* Mouse pointer on hover */
+}
+
+/* Darker background on mouse-over */
+.btn:hover {
+  background-color: RoyalBlue;
+}
+
+
+@media screen and (max-width: 500px) {
+  .header a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+
+  .header-right {
+    float: none;
+  }
+}
+</style>
+
+</head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div class="header">
+    <a href="http://127.0.0.1:5000/" class="logo">Football Players Manager</a>
+
+    <div class="header-right">
+        <a class="btn" href="http://127.0.0.1:5000/"> <i class="fa fa-home"></i> Home</a>
+        <a class="btn" href="http://127.0.0.1:5000/players"> <i class="fa fa-search"></i> Search</a>
+        <a class="btn" href="http://127.0.0.1:5000/teams"> <i class="fa fa-bar-chart"></i>Team Builder</a>
+        <!--       <a class="btn" href="http://127.0.0.1:8000/admin"> <i  class="fa fa-user"></i> Admin</a>-->
+        <a class="btn" href="http://127.0.0.1:5000/about"> <i class="fa fa-align-justify"></i> About</a>
+
+    </div>
+</div>
