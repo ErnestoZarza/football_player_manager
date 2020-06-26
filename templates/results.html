@@ -11,6 +11,8 @@
         var tableHTML = "<tr>";
 
         for (var headers in dataJson) {
+            if (headers ==='Value')
+                headers =  'Value (€)'
             tableHTML += "<th>" + headers + "</th>";
         }
         tableHTML += "</tr>";

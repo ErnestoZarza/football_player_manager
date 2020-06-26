@@ -25,89 +25,166 @@
             margin: 0 5%;
         }
 
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 80%;
+            position: center;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            /*display: none;*/
+        }
+
+        th {
+            /*background-color: #61D4B3;*/
+            background-color: #434e52;
+            /*background-color: #333333;*/
+            color: #eeeeee;
+
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2
+        }
+
     </style>
 
 </head>
 
 <body>
-<br><br>
+<br>
 <div class="tex-container">
-    <h3>AIMS:</h3>
 
-    <ul>
+    <h2>This project is a Web Application Service that allows to retrieve information of football players.</h2>
+
+
+    <br>
+
+    <h2>Features:</h2>
+
+    <br>
+
+    <div style="overflow-x:auto; margin-left: 2%; margin-right: 2%">
+
+         <h4>- Search Players:</h4>
+<br>
+    Search engine that displays the players that match the search criteria. The “searchable” attributes are: <strong>name</strong>, <strong>club</strong> & <strong>nationality</strong>)
+
+<br><br>
+    The displayed attributes for a search result are the following:
+<br><br>
+    <ul >
         <li>
-            To analyse our converter tasks and backend datasets in order to create insights that show us some relevant
-            properties inside the data.
+            Name
+        </li>
+        <li>
+            Age
+        </li>
+        <li>
+            Nationality
+        </li>
+        <li>
+            Club
+        </li>
+        <li>
+            Photo (Generic Picture)
+        </li>
+        <li>
+            Overall
+        </li>
+        <li>
+            Value
         </li>
         <br>
-        <li>
-            Use the above results to mesure performance and help the converter decision making in the queueing process.
-        </li>
     </ul>
+        <h5>Example </h5>
+        <br>
+        <div style="overflow-x:auto; margin-left: 2%; margin-right: 2%">
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Nationality</th>
+            <th>Club</th>
+            <th>Photo</th>
+            <th>Overall</th>
+            <th>Value (€)</th>
+        </tr>
+        <tr><td>L. Messi</td><td>31</td><td>Argentina</td><td>FC Barcelona</td><td> <img src="https://previews.123rf.com/images/juliarstudio/juliarstudio1602/juliarstudio160200163/51456955-soccer-player-black-simple-icon-isolated-on-white-background.jpg" border="3" height="60" width="80"></td><td>94</td><td>110500000</td></tr>
+        </thead>
+    </table>
+</div>
+
+
+        </div>
     <br><br>
 
-
-    <h3>Environments:</h3>
-    <ul>
-        <li>
-            We analysed the results for the environments <strong>"dev"</strong>, <strong>"staging"</strong>, <strong>"production"</strong>.
-        </li>
-    </ul>
+    <div style="overflow-x:auto; margin-left: 2%; margin-right: 2%">
+    <h4>- Team Builder:</h4>
+        <br>
+        This feature shows a list of 11 players that constitute the best team one can have for this specific budget . The best player is defined by their overall score.
     <br><br>
-    <h3>Analyses:</h3>
-    <ul>
-        <li>by <strong>Source extension</strong> (Analysis based on the file type of the converted files).</li>
+        <h5>Positions:</h5>
+<br>
+        <ul>
+
+        <li>Goalkeeper: GK</li>
         <br>
-        <li>by <strong>Single File</strong> (Analysis based on a single file type. You can remove outliers and other
-            actions).
-        </li>
+            <li>Fullback: RCB, CB, LB, RB, RWB, LWB</li>
         <br>
-        <li>by <strong>Size</strong> (Analysis based on the size of the converted files).</li>
+            <li>Halfback = RCM, LCM, LDM, CDM, LCB, RM, LM, RDM, CM</li>
         <br>
-        <li>by <strong>Company</strong> (Analysis based on data from our clients' companies).</li>
-        <br>
-        <li>by <strong>User</strong> (Analysis based on our customers' user data).</li>
-        <br>
-        <li>by <strong>Session</strong> (Analysis based on our clients' session data).</li>
-        <br>
-        <li>by <strong>Months</strong> (Analysis based on data from the last 6 months).</li>
-        <br>
-        <li>by <strong>Weekdays</strong> (Analysis based on data grouped by days of the week).</li>
-        <br>
-        <li>by <strong>Hours</strong> (Analysis based on data grouped by time of day).</li>
+            <li>Forward = RF, ST, LW, LF, RS, CAM, LS, LAM, RW, RAM, CF</li>
         <br>
 
     </ul>
-    <br><br>
 
-    <h3>URL's:</h3>
-    <ul>
-        <li>"Get "http://0.0.0.0:8000/analyses/*entity*/*analysis*/*environment*/' + ?name="name"</li>
-        <li>Get "http://0.0.0.0:8000/analyses/*entity*/*environment*/' + ?name="name"</li>
+        <h5>Constraints:</h5>
+<br>
+        <ul>
+
+        <li>1 GK</li>
+        <br>
+            <li>2 Fullback</li>
+        <br>
+            <li>3 Halfback</li>
+        <br>
+            <li>5 Forward</li>
+        <br>
 
     </ul>
-    <h4>variables:</h4>
-    <ul>
-        <li>entity: 'session', 'user', 'company', 'weekly', 'daily', 'source_extension', 'monthly', 'size'</li>
-        <li>analysis: 'session', 'user', 'company', 'weekly', 'daily', 'source_extension', 'monthly', 'size'</li>
-        <li>environment: 'dev', 'staging', 'production'</li>
+    <h4>Example </h4>
+        <br>
+    <h5 id="budget" style="margin-left: 5%"> Budget: 200000000 € | Constraints: GK: 1   DEF: 2   MID: 3  STR: 5</h5>
+        <br>
+        <table class="table table-bordered">
+            <tbody>
+            <tr><th>Name</th><th>Age</th><th>Nationality</th><th>Club</th><th>Photo</th><th>Overall</th><th>Value</th><th>Position</th></tr>
+            <tr><td>Cristiano Ronaldo</td><td>33</td><td>Portugal</td><td>Juventus</td><td> <img src="https://previews.123rf.com/images/juliarstudio/juliarstudio1602/juliarstudio160200163/51456955-soccer-player-black-simple-icon-isolated-on-white-background.jpg" border="3" height="60" width="80"></td><td>94</td><td>77000000</td><td>ST</td></tr>
+            <tr><td>G. Chiellini</td><td>33</td><td>Italy</td><td>Juventus</td><td> <img src="https://previews.123rf.com/images/juliarstudio/juliarstudio1602/juliarstudio160200163/51456955-soccer-player-black-simple-icon-isolated-on-white-background.jpg" border="3" height="60" width="80"></td><td>89</td><td>27000000</td><td>LCB</td></tr>
+            <tr><td>G. Buffon</td><td>40</td><td>Italy</td><td>Paris Saint-Germain</td><td> <img src="https://previews.123rf.com/images/juliarstudio/juliarstudio1602/juliarstudio160200163/51456955-soccer-player-black-simple-icon-isolated-on-white-background.jpg" border="3" height="60" width="80"></td><td>88</td><td>4000000</td><td>GK</td></tr>
+            <tr><td>Fernandinho</td><td>33</td><td>Brazil</td><td>Manchester City</td><td> <img src="https://previews.123rf.com/images/juliarstudio/juliarstudio1602/juliarstudio160200163/51456955-soccer-player-black-simple-icon-isolated-on-white-background.jpg" border="3" height="60" width="80"></td><td>86</td><td>18000000</td><td>CDM</td></tr>
+            <tr><td>Iniesta</td><td>34</td><td>Spain</td><td>Vissel Kobe</td><td> <img src="https://previews.123rf.com/images/juliarstudio/juliarstudio1602/juliarstudio160200163/51456955-soccer-player-black-simple-icon-isolated-on-white-background.jpg" border="3" height="60" width="80"></td><td>86</td><td>21500000</td><td>LF</td></tr>
+            <tr><td>Naldo</td><td>35</td><td>Brazil</td><td>FC Schalke 04</td><td> <img src="https://previews.123rf.com/images/juliarstudio/juliarstudio1602/juliarstudio160200163/51456955-soccer-player-black-simple-icon-isolated-on-white-background.jpg" border="3" height="60" width="80"></td><td>85</td><td>9000000</td><td>CB</td></tr>
+            <tr><td>Z. Ibrahimović</td><td>36</td><td>Sweden</td><td>LA Galaxy</td><td> <img src="https://previews.123rf.com/images/juliarstudio/juliarstudio1602/juliarstudio160200163/51456955-soccer-player-black-simple-icon-isolated-on-white-background.jpg" border="3" height="60" width="80"></td><td>85</td><td>14000000</td><td>RS</td></tr>
+            <tr><td>A. Barzagli</td><td>37</td><td>Italy</td><td>Juventus</td><td> <img src="https://previews.123rf.com/images/juliarstudio/juliarstudio1602/juliarstudio160200163/51456955-soccer-player-black-simple-icon-isolated-on-white-background.jpg" border="3" height="60" width="80"></td><td>84</td><td>4200000</td><td>CB</td></tr>
+            <tr><td>D. De Rossi</td><td>34</td><td>Italy</td><td>Roma</td><td> <img src="https://previews.123rf.com/images/juliarstudio/juliarstudio1602/juliarstudio160200163/51456955-soccer-player-black-simple-icon-isolated-on-white-background.jpg" border="3" height="60" width="80"></td><td>83</td><td>8000000</td><td>RDM</td></tr>
+            <tr><td>David Villa</td><td>36</td><td>Spain</td><td>New York City FC</td><td> <img src="https://previews.123rf.com/images/juliarstudio/juliarstudio1602/juliarstudio160200163/51456955-soccer-player-black-simple-icon-isolated-on-white-background.jpg" border="3" height="60" width="80"></td><td>82</td><td>8000000</td><td>ST</td></tr>
+            <tr><td>Aduriz</td><td>37</td><td>Spain</td><td>Athletic Club de Bilbao</td><td> <img src="https://previews.123rf.com/images/juliarstudio/juliarstudio1602/juliarstudio160200163/51456955-soccer-player-black-simple-icon-isolated-on-white-background.jpg" border="3" height="60" width="80"></td><td>82</td><td>8000000</td><td>ST</td></tr></tbody></table>
 
-    </ul>
-    <br><br>
-    <h3>METHODS:</h3>
-    <ul>
-        <li>
-            Combining the Python Pandas libraries for data analysis and Matplotlib to visualise the results and create
-            graphics and tables.
-        </li>
-    </ul>
+        </div>
     <br><br>
 
 
 </div>
 
 
-<!--    // style="width:50px;height:60px;">-->
 <br><br><br><br>
 
 
