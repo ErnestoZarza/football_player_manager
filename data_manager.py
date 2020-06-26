@@ -1,14 +1,18 @@
 import os
 
 from sqlalchemy import create_engine
-import pymysql
 import pandas as pd
 
-
+# base path
 basePath = os.path.dirname(os.path.abspath(__file__))
 
 
 def get_value_int(value):
+    """
+    Method to convert player's values into float
+    :param value: string value
+    :return: string value converted to float
+    """
     magnitude = ''
     if len(value) > 2:
         if str(value[-1]).isalpha():
@@ -29,6 +33,10 @@ def get_value_int(value):
 
 
 def read_data_csv():
+    """
+    Method to read the original csv file
+    :return: a customized dataframe with the significant fields
+    """
     path = basePath + '/data/data.csv'
     df = pd.read_csv(path)
     data_set = df[['ID', 'Name', 'Age', 'Nationality', 'Club', 'Photo', 'Overall', 'Value', 'Position']]
@@ -37,6 +45,10 @@ def read_data_csv():
 
 
 def save_data():
+    """
+    Save the data from the csv in the db
+    :return:
+    """
 
     table_name = "Players"
 
@@ -68,12 +80,20 @@ def save_data():
 
 
 def get_data_from_db(name=None, club=None, nationality=None):
+    """
+    Filter methos
+    :param name: filter by name
+    :param club: filter by club
+    :param nationality: filter by nationality
+    :return: customized dataframe
+    """
     sql_engine = create_engine('mysql+pymysql://root:Panda@#35@127.0.0.1', pool_recycle=3600)
 
     db_connection = sql_engine.connect()
 
     where = ''
 
+    # Next steps make the search by patterns
     if name:
         where = "WHERE Name LIKE '{name}'".format(name=name)
     if club:
@@ -86,8 +106,9 @@ def get_data_from_db(name=None, club=None, nationality=None):
             where += " AND Nationality LIKE '{nationality}'".format(nationality=nationality)
         else:
             where = "WHERE Nationality LIKE '{nationality}'".format(nationality=nationality)
+    query = "SELECT * FROM football_players_db.players {filter}".format(filter=where)
 
-    frame = pd.read_sql("SELECT * FROM football_players_db.players {filter}".format(filter=where), db_connection);
+    frame = pd.read_sql(query, db_connection)
 
     pd.set_option('display.expand_frame_repr', False)
 
@@ -99,11 +120,13 @@ def get_data_from_db(name=None, club=None, nationality=None):
 
 
 def get_data_frame_from_db():
+    """
+    :return: returns the db as a dataframe
+    """
     sql_engine = create_engine('mysql+pymysql://root:Panda@#35@127.0.0.1', pool_recycle=3600)
     db_connection = sql_engine.connect()
     frame = pd.read_sql("SELECT * FROM football_players_db.players", db_connection);
     pd.set_option('display.expand_frame_repr', False)
-    # result = frame[['Name', 'Age', 'Nationality', 'Club', 'Photo', 'Overall', 'Value']]
     db_connection.close()
     return frame
 
