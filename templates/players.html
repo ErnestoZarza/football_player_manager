@@ -25,6 +25,7 @@
             color: #cc7a00;
             border: 2px solid #cc7a00;
             height: 1px;
+            margin-left: 5%;
         }
 
         .button:hover {
@@ -90,45 +91,54 @@
                 Nationality:
                 <input type="text" id="nationalityInput" placeholder="Search for Nationality..">
             </div>
-            <button type="submit" class="btn btn-warning" onclick=search()>
-                    <span class="fa fa-search"></span> Search
-            </button>
+
         </div>
 
     </div>
+
+
+
 </form>
+
+<button type="button" style="margin-top: 2%; margin-left: 6%;" class="btn btn-warning" onclick=search()>
+                    <span class="fa fa-search"></span> Search
+            </button>
+
 
 <script>
     function search() {
         var name = document.getElementById("nameInput");
         var nameStr = name.value;
+
         var nationality = document.getElementById("nationalityInput");
         var nationalityStr = nationality.value;
+
         var club = document.getElementById("clubInput");
         var clubStr = club.value;
 
         var criteria = "?";
-        var endpoint = 'http://127.0.0.1:5000/results';
+        var endpoint = 'http://127.0.0.1:5000/players/results';
 
         if (nameStr.length > 0)
-            criteria = criteria.concat('name','=',nameStr)
+            criteria = criteria.concat('name','=',nameStr);
 
         if (nationalityStr.length > 0)
             if(criteria.length > 1)
-                criteria = criteria.concat('&nationality','=',nationalityStr)
+                criteria = criteria.concat('&nationality','=',nationalityStr);
             else
-                criteria = criteria.concat('nationality','=',nationalityStr)
+                criteria = criteria.concat('nationality','=',nationalityStr);
 
         if (clubStr.length > 0)
             if(criteria.length > 1)
-                criteria = criteria.concat('&club','=',clubStr)
+                criteria = criteria.concat('&club','=',clubStr);
             else
-                criteria = criteria.concat('club','=',clubStr)
+                criteria = criteria.concat('club','=',clubStr);
 
         if(criteria.length > 1)
-            endpoint = endpoint.concat(criteria)
-
+            endpoint = endpoint.concat(criteria);
+        console.log(endpoint);
         window.location.href = endpoint;
+        return false;
     }
 
 </script>
