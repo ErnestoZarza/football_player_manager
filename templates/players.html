@@ -68,6 +68,7 @@
 
 
 </head>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <body>
@@ -107,7 +108,7 @@
         var clubStr = club.value;
 
         var criteria = "?";
-        var endpoint = 'http://127.0.0.1:5000/search';
+        var endpoint = 'http://127.0.0.1:5000/results';
 
         if (nameStr.length > 0)
             criteria = criteria.concat('name','=',nameStr)
@@ -133,6 +134,17 @@
 
 </script>
 
+<div class=container>
+    {% block content %}
+    {% endblock content%}
+</div>
+
+<script>
+    $(document).ready(function () {
+        {% block jquery %}
+        {% endblock %}
+    })
+</script>
 
 <br><br>
 
@@ -164,5 +176,5 @@
 </body>
 
 
-{% include 'includes/footer.html' %}
+<!--{% include 'includes/footer.html' %}-->
 </html>
