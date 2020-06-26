@@ -1,0 +1,41 @@
+{% extends 'players.html' %}
+
+<script>
+    function show_statistics() {
+        {% block jquery %}
+        var dataJson = {{data|safe}};
+         console.log(dataJson)
+
+        let tableId = "dataFrame";
+
+        var tableHTML = "<tr>";
+
+        for (var headers in dataJson) {
+            tableHTML += "<th>" + headers + "</th>";
+        }
+        tableHTML += "</tr>";
+
+        var entitiesNames = Object.keys(dataJson['Age']);
+        for (var eachItem in entitiesNames) {
+            var entityName = entitiesNames[eachItem];
+            tableHTML += "<tr>";
+            for (var eachValue in dataJson) {
+                if(eachValue === 'Photo')
+                    //image link not working
+                    // tableHTML +=  "<td> <img src=" + dataJson[eachValue][entityName] + " border=3 height=100 width=100></img></td>";
+                    tableHTML +=  "<td> <img src=" + "https://previews.123rf.com/images/juliarstudio/juliarstudio1602/juliarstudio160200163/51456955-soccer-player-black-simple-icon-isolated-on-white-background.jpg" + " border=3 height=60 width=80></img></td>";
+                else
+                    tableHTML += "<td>" + dataJson[eachValue][entityName] + "</td>";
+            }
+            tableHTML += "</tr>";
+        }
+
+        document.getElementById(tableId).innerHTML = tableHTML;
+
+        {% endblock %}
+
+    }
+
+
+
+</script>
