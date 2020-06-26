@@ -1,9 +1,5 @@
 import os
 
-from sqlalchemy import create_engine
-import pymysql
-import pandas as pd
-
 # server imports
 import redis
 from jinja2 import Environment, FileSystemLoader
@@ -13,13 +9,12 @@ from werkzeug.routing import Map, Rule
 from werkzeug.exceptions import HTTPException, NotFound
 from werkzeug.middleware.shared_data import SharedDataMiddleware
 from werkzeug.urls import url_parse
-from werkzeug.utils import redirect
 
 from data_manager import get_data_from_db
 from team_builder import team_builder
 
 
-def base36_encode(self, number):
+def base36_encode(number):
     assert number >= 0, 'positive integer required'
     if number == 0:
         return '0'
@@ -49,8 +44,8 @@ class Players(object):
 
         self.url_map = Map([
             Rule('/', endpoint='home'),
-            Rule('/players', endpoint='result'),
-            Rule('/results', endpoint='result'),
+            Rule('/players', endpoint='players'),
+            Rule('/players/results', endpoint='result'),
             Rule('/teams', endpoint='team_builder'),
             Rule('/teams/results', endpoint='team_results'),
             Rule('/builder', endpoint='team_result'),
@@ -85,7 +80,12 @@ class Players(object):
         nationality = request.args.get('nationality', None)
         club = request.args.get('club', None)
         data = get_data_from_db(name=name, club=club, nationality=nationality)
-        return self.render_template('results.html', data=data)
+
+        parameters = {"name": name if name is not None else '',
+                      "club": club if club is not None else '',
+                      "nationality": nationality if nationality is not None else ''
+                      }
+        return self.render_template('players-results.html', data=data, parameters=parameters)
 
     def on_home(self, request):
         return self.render_template('home.html')
