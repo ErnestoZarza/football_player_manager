@@ -78,7 +78,29 @@ $ docker-compose down
 <br/>
 
 
-#### Additional Questions:
+## Task Observations:
+
+### Player's Positions
+
+Some of the game positions set out in the task description do not match the positions the player's positions the database.
+
+Real positions:
+
+* Goalkeeper: GK
+
+* Fullback: RCB, CB, LB, RB, RWB, LWB
+
+* Halfback = RCM, LCM, LDM, CDM, LCB, RM, LM, RDM, CM
+
+* Forward = RF, ST, LW, LF, RS, CAM, LS, LAM, RW, RAM, CF
+
+### Player's Picture
+
+The link of the players' photos in the database is not correct, it seems that the website that stores them changed the design of the urls so they produce a **404**.
+
+<br/>
+
+## Additional Questions:
 
 Q- What technology (apart from Python, which is required), DB, and tools did you use
 and why do you think it’s a good pick?
