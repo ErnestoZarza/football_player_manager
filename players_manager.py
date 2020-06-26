@@ -15,42 +15,8 @@ from werkzeug.middleware.shared_data import SharedDataMiddleware
 from werkzeug.urls import url_parse
 from werkzeug.utils import redirect
 
-
-def get_data_from_db(name=None, club=None, nationality=None):
-    sql_engine = create_engine('mysql+pymysql://root:Panda@#35@127.0.0.1', pool_recycle=3600)
-
-    db_connection = sql_engine.connect()
-
-    where = ''
-
-    if name:
-        where = "WHERE Name={name}".format(name=name)
-    if club:
-        if "WHERE" in where:
-            where += " AND Club={club}".format(club=club)
-        else:
-            where = "WHERE Club={club}".format(club=club)
-    if nationality:
-        if "WHERE" in where:
-            where += " AND Nationality='{nationality}'".format(nationality=nationality)
-        else:
-            where = "WHERE Nationality='{nationality}'".format(nationality=nationality)
-
-    frame = pd.read_sql("select * from football_players_db.players {filter}".format(filter=where), db_connection);
-
-    pd.set_option('display.expand_frame_repr', False)
-
-    print(frame)
-
-    db_connection.close()
-    return frame.to_json()
-
-
-# get_data_from_db(nationality='Argentina')
-
-# @Request.application
-# def application(request):
-#     return Response('Hello, World!')
+from data_manager import get_data_from_db
+from team_builder import team_builder
 
 
 def base36_encode(self, number):
@@ -73,13 +39,6 @@ def get_hostname(url):
     return url_parse(url).netloc
 
 
-def application(environ, start_response):
-    request = Request(environ)
-    text = 'Hello %s!' % request.args.get('name', 'Ernesto')
-    response = Response(text, mimetype='text/plain')
-    return response(environ, start_response)
-
-
 class Players(object):
 
     def __init__(self, config):
@@ -90,10 +49,10 @@ class Players(object):
 
         self.url_map = Map([
             Rule('/', endpoint='home'),
-            Rule('/players', endpoint='players'),
-            Rule('/search', endpoint='search'),
+            Rule('/players', endpoint='result'),
             Rule('/results', endpoint='result'),
             Rule('/teams', endpoint='team_builder'),
+            Rule('/teams/results', endpoint='team_results'),
             Rule('/builder', endpoint='team_result'),
             Rule('/about', endpoint='about')
         ])
@@ -121,24 +80,12 @@ class Players(object):
     def on_players(self, request):
         return self.render_template('players.html')
 
-    def on_search(self, request):
-        if request.method == 'POST':
-
-            url = request.form['url']
-            if not is_valid_url(url):
-                error = 'Please enter a valid URL'
-            else:
-                name = request.args.get('name', None)
-                nationality = request.args.get('nationality', None)
-                club = request.args.get('club', None)
-                result = get_data_from_db(name=name, nationality=nationality, club=club)
-                return self.render_template('search-result.html',
-                                            name=name,
-                                            nationality=nationality,
-                                            club=club,
-                                            data=result
-                                            )
-            return self.render_template('players.html', error=error, url=url)
+    def on_result(self, request):
+        name = request.args.get('name', None)
+        nationality = request.args.get('nationality', None)
+        club = request.args.get('club', None)
+        data = get_data_from_db(name=name, club=club, nationality=nationality)
+        return self.render_template('results.html', data=data)
 
     def on_home(self, request):
         return self.render_template('home.html')
@@ -148,6 +95,13 @@ class Players(object):
 
     def on_team_builder(self, request):
         return self.render_template('teams.html')
+
+    def on_team_results(self, request):
+        budget = int(request.args.get('budget', 1000000000))
+        data = team_builder(budget)
+        data = data[['Name', 'Age', 'Nationality', 'Club', 'Photo', 'Overall', 'Value', 'Position']]
+        data = data.to_json()
+        return self.render_template('team-result.html', data=data, budget=budget)
 
 
 def create_app(redis_host='localhost', redis_port=6379, with_static=True):
