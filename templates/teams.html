@@ -74,10 +74,10 @@
 {% include 'base/js.html' %}
 <br>
 
-        <h1 style="margin-top: 0">Team Builder</h1>
-
-<br><br>
+<br>
         <form style="margin-left: 5%">
+            <h1 style="margin-top: 0">Team Builder</h1>
+            <br>
         <div class="row">
             <div class="form-group col-sm-4 col-md-3">
                 Budget:
@@ -88,11 +88,30 @@
                     <span class="fa fa-search"></span> Build team
             </button>
         </div>
+            <br><br>
+            <h5>(This operation could take a while. Please be patient....)</h5>
 </form>
 
 <br><br>
 
-<h3>Team</h3>
+
+<div class=container>
+    {% block content %}
+    {% endblock content%}
+</div>
+
+<script>
+    $(document).ready(function () {
+        {% block jquery %}
+        {% endblock %}
+    })
+</script>
+
+<br>
+
+<h3 id="budget" style="margin-left: 5%"> Budget: - </h3>
+
+<h3 id="constraints" style="margin-left: 5%"> Constraints: GK: 1   DEF: 2   MID: 3  STR: 5</h3>
 
 <br>
 
@@ -125,6 +144,4 @@
 
 </body>
 
-
-{% include 'includes/footer.html' %}
 </html>
