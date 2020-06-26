@@ -81,15 +81,33 @@
         <div class="row">
             <div class="form-group col-sm-4 col-md-3">
                 Budget:
-                <input type="text" id="budgetInput" placeholder="Team budget..">
+                <input type="number" id="budgetInput" placeholder="Team budget..">
             </div>
 
-            <button type="submit" class="btn btn-warning">
+            <button type="button" class="btn btn-warning" onclick=teamBuilder()>
                     <span class="fa fa-search"></span> Build team
             </button>
+
+             <h5 style="margin-left: 5%">(This operation could take a few seconds. Please be patient....)</h5>
         </div>
+<script>
+    function teamBuilder() {
+        var budget = document.getElementById("budgetInput");
+        var budgetStr = budget.value;
+
+        var criteria = "?";
+        var endpoint = 'http://127.0.0.1:5000//teams/results';
+
+        if (budgetStr.length > 0)
+            endpoint = endpoint.concat('?budget','=',budgetStr);
+
+        window.location.href = endpoint;
+        return false;
+    }
+
+</script>
             <br><br>
-            <h5>(This operation could take a while. Please be patient....)</h5>
+
 </form>
 
 <br><br>
