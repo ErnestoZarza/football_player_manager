@@ -3,7 +3,7 @@ from pulp import *
 from data_manager import get_data_frame_from_db
 
 
-# Solution as a knapsack problem
+# Solution as a knapsack problem with restrictions using LP.
 def team_builder(budget):
     defender_pos = ['RCB', 'CB', 'LB', 'RB', 'RWB', 'LWB']
     middle_pos = ['RCM', 'LCM', 'LDM', 'CDM', 'LCB', 'RM', 'LM', 'RDM', 'CM']
