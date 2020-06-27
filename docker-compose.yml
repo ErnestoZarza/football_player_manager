@@ -1,17 +1,27 @@
- Use root/example as user/password credentials
-version: '3.1'
+version: '3'
 
 services:
+  web:
+    build: .
+    ports:
+        - "5000:5000"
+    volumes:
+    - .:/football_player_manager
+    depends_on:
+      - redis
+      - db
 
   db:
     image: mysql
-    command: --default-authentication-plugin=mysql_native_password
-    restart: always
     environment:
-    MYSQL_ROOT_PASSWORD: Panda@#35
-
-  adminer:
-    image: adminer
+      MYSQL_DATABASE: football_players_db
+      MYSQL_ROOT_PASSWORD: Panda@#35
+      MYSQL_ROOT_HOST: 0.0.0.0
+      MYSQL_USER: rooot
+      MYSQL_PASSWORD: Panda@#35
     restart: always
     ports:
-      - 8080:8080
+      - "3309:3309"
+
+  redis:
+    image: "redis:alpine"
