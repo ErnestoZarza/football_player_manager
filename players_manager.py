@@ -10,8 +10,8 @@ from werkzeug.exceptions import HTTPException, NotFound
 from werkzeug.middleware.shared_data import SharedDataMiddleware
 from werkzeug.urls import url_parse
 
-from data_manager import get_data_from_db
-from team_builder import team_builder
+from data_manager import DataManager
+from team_builder import TeamBuilder
 
 
 def base36_encode(number):
@@ -37,6 +37,8 @@ def get_hostname(url):
 class Players(object):
 
     def __init__(self, config):
+        self.data_manager = DataManager()
+        self.builder = TeamBuilder()
         self.redis = redis.Redis(config['redis_host'], config['redis_port'])
         template_path = os.path.join(os.path.dirname(__file__), 'templates')
         self.jinja_env = Environment(loader=FileSystemLoader(template_path),
@@ -79,7 +81,7 @@ class Players(object):
         name = request.args.get('name', None)
         nationality = request.args.get('nationality', None)
         club = request.args.get('club', None)
-        data = get_data_from_db(name=name, club=club, nationality=nationality)
+        data = self.data_manager.get_data_from_db(name=name, club=club, nationality=nationality)
 
         parameters = {"name": name if name is not None else '',
                       "club": club if club is not None else '',
@@ -98,7 +100,7 @@ class Players(object):
 
     def on_team_results(self, request):
         budget = int(request.args.get('budget', 1000000000))
-        data = team_builder(budget)
+        data = self.builder.team_builder(budget)
         data = data[['Name', 'Age', 'Nationality', 'Club', 'Photo', 'Overall', 'Value', 'Position']]
         data = data.to_json()
         return self.render_template('team-result.html', data=data, budget=budget)
@@ -119,4 +121,4 @@ def create_app(redis_host='localhost', redis_port=6379, with_static=True):
 if __name__ == '__main__':
     from werkzeug.serving import run_simple
     app = create_app()
-    run_simple('127.0.0.1', 5000, app, use_debugger=True, use_reloader=True)
+    run_simple('0.0.0.0', 5000, app, use_debugger=True, use_reloader=True)
