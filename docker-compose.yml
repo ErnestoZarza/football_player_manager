@@ -10,13 +10,17 @@ services:
     depends_on:
       - redis
       - db
+    command:
+        sh "./start_code.sh"
+
+
 
   db:
     image: mysql
     environment:
       MYSQL_DATABASE: football_players_db
       MYSQL_ROOT_PASSWORD: Panda@#35
-      MYSQL_ROOT_HOST: 0.0.0.0
+      MYSQL_ROOT_HOST: db
       MYSQL_USER: rooot
       MYSQL_PASSWORD: Panda@#35
     restart: always
