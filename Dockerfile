@@ -5,6 +5,6 @@ WORKDIR /football_player_manager
 COPY requirements.txt /football_player_manager/
 RUN pip install -r requirements.txt
 COPY . /football_player_manager/
-
- CMD [ "python", "./football_player_manager/data_manager.py" ]
-CMD [ "python", "./football_player_manager/players_manager.py" ]
+EXPOSE 5000
+CMD [ "python", "./data_manager.py" ]
+CMD [ "python", "./players_manager.py" ]
