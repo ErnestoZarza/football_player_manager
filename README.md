@@ -106,11 +106,11 @@ The link of the players' photos in the database is not correct, it seems that th
 Q- What technology (apart from Python, which is required), DB, and tools did you use
 and why do you think it’s a good pick?
 
-### Project Requirements Technologies:
+### Project Technologies Requirements:
 
-- Python  
-- MySQL 
-- Docker
+- [Python](https://www.python.org/)  
+- [MySQL](https://www.mysql.com/) 
+- [Docker](https://www.docker.com/)
 
 ### Other Chosen Technologies:
 
@@ -120,7 +120,7 @@ Since one of the requirements of the project is not to use any framework like Dj
 
 Werkzeug is a comprehensive WSGI web application library. Werkzeug is not a framework, it’s a library with utilities to create your own framework or application and as such is very flexible.  It allows us to design a template engine, a database adapter, and even how to handle requests.
 
-Advantages:
+**Advantages:**
 
 - A response object that can wrap other WSGI applications and handle streaming data.
 
@@ -134,11 +134,11 @@ Advantages:
 
 #### [SQLALchemy](https://www.sqlalchemy.org/) - Python SQL toolkit:
 
-SQLAlchemy is the Python SQL toolkit and Object Relational Mapper that gives application developers the full power and flexibility of SQL.
+**SQLAlchemy** is the Python SQL toolkit and Object Relational Mapper that gives application developers the full power and flexibility of SQL.
 
 It provides a full suite of well known enterprise-level persistence patterns, designed for efficient and high-performing database access, adapted into a simple and Pythonic domain language.
 
-Advantages:
+**Advantages:**
 
 SQLAlchemy maintains a connection pool, with an open database connection being provided to each web request. The library handles common errors effectively, making applications robust against scenarios such as the database being restarted while the application is running.
 
@@ -148,7 +148,7 @@ SQLAlchemy maintains a connection pool, with an open database connection being p
 
 **Pandas** is a Python package providing fast, flexible, and expressive data structures (data frames) designed to make working with “relational” or “labeled” data both easy and intuitive.
 
-Advantages:
+**Advantages:**
 
 For this particular problem I think using pandas is an advantage in order to improve the data handling, cleaning and manipulation processes. The *dataframes* data structure provide an
 
@@ -157,9 +157,18 @@ For this particular problem I think using pandas is an advantage in order to imp
 
 This library allows us to model and solve linear programming problems, especially used to model linear optimization problems. Linear programming is a technique for the optimization of a linear objective function, subject to linear equality and linear inequality constraints. 
 
-Advantage:
+**Advantage:**
 
 - Modelling and solution for the team builder exercise.
+
+
+[Heroku](https://www.heroku.com/) - Cloud platform for building Pythonic apps.
+
+Heroku Container Registry allows you to deploy your Docker images to Heroku. 
+
+**Advantage:** 
+
+- Easy to build a Docker images, as well as take advantage of Review Apps, check out building Docker images with heroku.yml.
 
 
 Q- Let's say we want to add all the players created by users (between 5,000,000 to
