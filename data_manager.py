@@ -16,15 +16,8 @@ class DBConfig:
     DB_HOST = os.getenv('MYSQL_ROOT_HOST', 'db')
     DB_URI = "mysql+pymysql://{user}:{password}@{host}/{db_name}".format(user=DB_USERNAME, password=DB_PASSWORD,
                                                                          host=DB_HOST, db_name=DATABASE_NAME)
-    # MYSQL_ROOT_PASSWORD = 'Panda@#35'
-    # MYSQL_USER = 'root'
-    # MYSQL_ALLOW_EMPTY_PASSWORD = True
-    DB_START_HOST = os.getenv('MYSQL_START_ROOT_HOST', '0.0.0.0')
-    DB_START_URI = "mysql+pymysql://{user}:{password}@{host}/{db_name}".format(user=DB_USERNAME, password=DB_PASSWORD,
-                                                                               host=DB_START_HOST, db_name=DATABASE_NAME)
 
     SQLALCHEMY_DATABASE_URI = DB_URI
-    SQLALCHEMY_START_DATABASE_URI = DB_START_URI
     SQLALCHEMY_TRACK_MODIFICATIONS = True
 
 
@@ -78,7 +71,7 @@ class DataManager:
 
         data_frame = self.read_data_csv()
 
-        sql_engine = create_engine(self.db_config.SQLALCHEMY_START_DATABASE_URI, pool_recycle=3600)
+        sql_engine = create_engine(self.db_config.SQLALCHEMY_DATABASE_URI, pool_recycle=3600)
 
         db_connection = sql_engine.connect()
 
