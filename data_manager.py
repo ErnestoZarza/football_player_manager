@@ -11,7 +11,7 @@ class DBConfig:
     # reading variables from environment
     # 'mysql+pymysql://root:Panda@#35@0.0.0.0:3309/football_players_db', pool_recycle=3600)
     DB_USERNAME = os.getenv('MYSQL_USER', 'root')
-    DB_PASSWORD = os.getenv('MYSQL_PASSWORD', 'Panda@#35')
+    DB_PASSWORD = os.getenv('MYSQL_PASSWORD', 'adminadmin')
     DATABASE_NAME = os.getenv('MYSQL_DATABASE', 'football_players_db')
     DB_HOST = os.getenv('MYSQL_ROOT_HOST', 'db')
     DB_URI = "mysql+pymysql://{user}:{password}@{host}/{db_name}".format(user=DB_USERNAME, password=DB_PASSWORD,
@@ -122,7 +122,7 @@ class DataManager:
                 where += " AND Nationality LIKE '{nationality}'".format(nationality=nationality)
             else:
                 where = "WHERE Nationality LIKE '{nationality}'".format(nationality=nationality)
-        query = "SELECT * FROM football_players_db.players {filter}".format(filter=where)
+        query = "SELECT * FROM Players {filter}".format(filter=where)
 
         frame = pd.read_sql(query, db_connection)
 
@@ -140,7 +140,7 @@ class DataManager:
         """
         sql_engine = create_engine(self.db_config.SQLALCHEMY_DATABASE_URI, pool_recycle=3600)
         db_connection = sql_engine.connect()
-        frame = pd.read_sql("SELECT * FROM football_players_db.players", db_connection);
+        frame = pd.read_sql("SELECT * FROM Players", db_connection);
         pd.set_option('display.expand_frame_repr', False)
         db_connection.close()
         return frame
