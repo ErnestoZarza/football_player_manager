@@ -6,5 +6,3 @@ COPY requirements.txt /football_player_manager/
 RUN pip install -r requirements.txt
 COPY . /football_player_manager/
 EXPOSE 5000
-CMD [ "python", "./data_manager.py" ]
-CMD [ "python", "./players_manager.py" ]
