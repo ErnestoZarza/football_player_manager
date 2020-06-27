@@ -12,6 +12,12 @@ services:
       - db
     command:
         sh "./start_code.sh"
+    environment:
+      MYSQL_DATABASE: football_players_db
+      MYSQL_ROOT_PASSWORD: Panda@#35
+      MYSQL_ROOT_HOST: db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: Panda@#35
 
 
 
@@ -21,7 +27,7 @@ services:
       MYSQL_DATABASE: football_players_db
       MYSQL_ROOT_PASSWORD: Panda@#35
       MYSQL_ROOT_HOST: db
-      MYSQL_USER: rooot
+      MYSQL_USER: root
       MYSQL_PASSWORD: Panda@#35
     restart: always
     ports:
