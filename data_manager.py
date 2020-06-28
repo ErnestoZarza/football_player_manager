@@ -9,13 +9,12 @@ basePath = os.path.dirname(os.path.abspath(__file__))
 
 class DBConfig:
     # reading variables from environment
-    # 'mysql+pymysql://root:Panda@#35@0.0.0.0:3309/football_players_db', pool_recycle=3600)
     DB_USERNAME = os.getenv('MYSQL_USER', 'root')
     DB_PASSWORD = os.getenv('MYSQL_PASSWORD', 'adminadmin')
     DATABASE_NAME = os.getenv('MYSQL_DATABASE', 'football_players_db')
     DB_HOST = os.getenv('MYSQL_ROOT_HOST', 'db')
 
-    DB_URI = os.getenv('CLEARDB_DATABASE_URL', "mysql+pymysql://{user}:{password}@{host}/{db_name}".format(user=DB_USERNAME, password=DB_PASSWORD,
+    DB_URI = os.getenv('DATABASE_URL', "mysql+pymysql://{user}:{password}@{host}/{db_name}".format(user=DB_USERNAME, password=DB_PASSWORD,
                                                                          host=DB_HOST, db_name=DATABASE_NAME))
 
     SQLALCHEMY_DATABASE_URI = DB_URI
