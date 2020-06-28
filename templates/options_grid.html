@@ -90,13 +90,13 @@ img {
   <div class="card">  <!--style="background-color:#aaa;">-->
     <h1 class="cardLabel">Search Players</h1>
     <p>Filter our players data base (the “searchable” attributes are: name, club & nationality)</p>
-      <button class="button" onclick="window.location.href = 'http://{{host}}/players';"><i class="fa fa-search"></i> Go to Search</button>
+      <button class="button" onclick="window.location.href = 'http://{{host | safe}}/players';"><i class="fa fa-search"></i> Go to Search</button>
       </div>
 
       <div class="card" >
     <h1 class="cardLabel">Build your team</h1>
     <p>Create your team with a specific budget (e.g: €200,000,000)....</p>
-          <button class="button" onclick="window.location.href = 'http://{{host}}/teams';"><i class="fa fa-bar-chart"></i> Go to Team Builder</button>
+          <button class="button" onclick="window.location.href = 'http://{{host | safe}}/teams';"><i class="fa fa-bar-chart"></i> Go to Team Builder</button>
   </div>
 
      </div>

@@ -102,10 +102,10 @@ body {
     <a href="http:///{{host}}/" class="logo">Football Players Manager</a>
 
     <div class="header-right">
-        <a class="btn" href="http://{{host}}/"> <i class="fa fa-home"></i> Home</a>
-        <a class="btn" href="http:///{{host}}/players"> <i class="fa fa-search"></i> Search</a>
-        <a class="btn" href="http:///{{host}}/teams"> <i class="fa fa-bar-chart"></i>Team Builder</a>
-        <a class="btn" href="http:///{{host}}/about"> <i class="fa fa-align-justify"></i> About</a>
+        <a class="btn" href="http://{{host | safe}}/"> <i class="fa fa-home"></i> Home</a>
+        <a class="btn" href="http:///{{host | safe}}/players"> <i class="fa fa-search"></i> Search</a>
+        <a class="btn" href="http:///{{host | safe}}/teams"> <i class="fa fa-bar-chart"></i>Team Builder</a>
+        <a class="btn" href="http:///{{host | safe}}/about"> <i class="fa fa-align-justify"></i> About</a>
 
     </div>
 </div>
