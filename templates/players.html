@@ -117,7 +117,7 @@
         var clubStr = club.value;
 
         var criteria = "?";
-        var endpoint = 'http://0.0.0.0:5000/players/results';
+        var endpoint = 'http://'+ {{host | safe}} + '/players/results';
 
         if (nameStr.length > 0)
             criteria = criteria.concat('name','=',nameStr);

@@ -43,6 +43,7 @@ class Players(object):
         template_path = os.path.join(os.path.dirname(__file__), 'templates')
         self.jinja_env = Environment(loader=FileSystemLoader(template_path),
                                      autoescape=True)
+        self.host = os.getenv('HOST', '0.0.0.0:5000')
 
         self.url_map = Map([
             Rule('/', endpoint='home'),
@@ -75,7 +76,7 @@ class Players(object):
         return self.wsgi_app(environ, start_response)
 
     def on_players(self, request):
-        return self.render_template('players.html')
+        return self.render_template('players.html', host=self.host)
 
     def on_result(self, request):
         name = request.args.get('name', None)
@@ -87,23 +88,23 @@ class Players(object):
                       "club": club if club is not None else '',
                       "nationality": nationality if nationality is not None else ''
                       }
-        return self.render_template('players-results.html', data=data, parameters=parameters)
+        return self.render_template('players-results.html', data=data, parameters=parameters, host=self.host)
 
     def on_home(self, request):
-        return self.render_template('home.html')
+        return self.render_template('home.html',host=self.host)
 
     def on_about(self, request):
-        return self.render_template('about.html')
+        return self.render_template('about.html', host=self.host)
 
     def on_team_builder(self, request):
-        return self.render_template('teams.html')
+        return self.render_template('teams.html', host=self.host)
 
     def on_team_results(self, request):
         budget = int(request.args.get('budget', 1000000000))
         data = self.builder.team_builder(budget)
         data = data[['Name', 'Age', 'Nationality', 'Club', 'Photo', 'Overall', 'Value', 'Position']]
         data = data.to_json()
-        return self.render_template('team-result.html', data=data, budget=budget)
+        return self.render_template('team-result.html', data=data, budget=budget, host=self.host)
 
 
 def create_app(redis_host='localhost', redis_port=6379, with_static=True):

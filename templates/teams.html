@@ -96,7 +96,7 @@
         var budgetStr = budget.value;
 
         var criteria = "?";
-        var endpoint = 'http://0.0.0.0:5000/teams/results';
+        var endpoint = 'http://'+ {{host | safe}}+ '/teams/results';
 
         if (budgetStr.length > 0)
             endpoint = endpoint.concat('?budget','=',budgetStr);
