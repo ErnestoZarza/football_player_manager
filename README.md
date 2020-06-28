@@ -105,6 +105,7 @@ The link of the players' photos in the database is not correct, it seems that th
 
 Q- What technology (apart from Python, which is required), DB, and tools did you use
 and why do you think it’s a good pick?
+<br/>
 
 ### Project Technologies Requirements:
 
@@ -114,7 +115,7 @@ and why do you think it’s a good pick?
 
 ### Other Chosen Technologies:
 
-#### [Werzeug](https://werkzeug.palletsprojects.com/) - Web application library:
+#### [Werkzeug](https://werkzeug.palletsprojects.com/) - Web application library:
 
 Since one of the requirements of the project is not to use any framework like Django or Flask, I decided to use **Werkzeug**.
 
@@ -128,9 +129,9 @@ Werkzeug is a comprehensive WSGI web application library. Werkzeug is not a fram
 
 - HTTP utilities to handle entity tags, cache control, dates, user agents, cookies, files, and more.
 
-- A threaded WSGI server for use while developing applications locally.
-
 - A test client for simulating HTTP requests during testing without requiring running a server.
+
+<br/>
 
 #### [SQLALchemy](https://www.sqlalchemy.org/) - Python SQL toolkit:
 
@@ -142,7 +143,7 @@ It provides a full suite of well known enterprise-level persistence patterns, de
 
 SQLAlchemy maintains a connection pool, with an open database connection being provided to each web request. The library handles common errors effectively, making applications robust against scenarios such as the database being restarted while the application is running.
 
-
+<br/>
 
 #### [Pandas](https://pandas.pydata.org/) - Data Manipulation.
 
@@ -150,8 +151,8 @@ SQLAlchemy maintains a connection pool, with an open database connection being p
 
 **Advantages:**
 
-For this particular problem I think using pandas is an advantage in order to improve the data handling, cleaning and manipulation processes. The *dataframes* data structure provide an
-
+- For this particular problem I think using pandas is an advantage in order to improve the data handling, cleaning, manipulation processes. The *dataframes* data structure provide an that provides a quick and efficient way to retrieve data for the solution of the optimization problem of creating the teams.
+<br/>
 
 #### [Pulp](https://pypi.org/project/PuLP/) - Linear Programming Library:
 
@@ -159,34 +160,60 @@ This library allows us to model and solve linear programming problems, especiall
 
 **Advantage:**
 
-- Modelling and solution for the team builder exercise.
+- Modelling and optimal solution for the team builder exercise.
 
+<br/>
 
-[Heroku](https://www.heroku.com/) - Cloud platform for building Pythonic apps.
+#### [Heroku](https://www.heroku.com/) - Cloud platform for building Pythonic apps.
 
-Heroku Container Registry allows you to deploy your Docker images to Heroku. 
+Heroku Container Registry allows you to deploy your Docker images to Heroku in a simple and fast way. 
 
 **Advantage:** 
 
-- Easy to build a Docker images, as well as take advantage of Review Apps, check out building Docker images with heroku.yml.
+- Easy to build a Docker images, as well as take advantage of Review Apps. Also, the possibility building Docker images using heroku.yml.
 
-
+<br/>
 Q- Let's say we want to add all the players created by users (between 5,000,000 to
 20,000,000 new players per month) to the database. We also decide to add real-time
 updates to the player database. What tech stack will you use? (Language, DB,
 hosting, etc.) How would you make sure your tool is scalable for higher volumes?
 
-#### Technologies: 
+<br/>
 
-* Programming Language:
+#### Programming Language:
 
-* DataBase:
+##### Python:
+
+If using **Python** would be a requirement for the project. I would strongly consider the use of a framework.
+
+For example Django provides a [django-filter](https://django-filter.readthedocs.io/en/stable/) package in order to add a hassle-free filtering to your views with a straightforward integration with the templates.
+
+##### Scala:
+
+I think it would be convenient to consider a change of language in order to accelerate the performance of the application.
+
+Scala is frequently over 10 times faster than Python. Scala uses Java Virtual Machine (JVM) during runtime which gives is some speed over Python in most cases. Python is dynamically typed and this reduces the speed. Compiled languages are faster than interpreted.
+
+Scala has multiple standard libraries and cores which allows quick integration of the databases in Big Data ecosystems. Scala allows writing of code with multiple concurrency primitives whereas Python doesn’t support “entirely” concurrency or multithreading. Due to its concurrency feature, Scala allows better memory management and data processing. However, Python does support heavyweight process forking.
+
+Companies like Twitter switched to Scala. They said: "Scala is extraordinarily suited for handling real-time messaging on a large scale".
+
+<br/>
+
+#### Search Engine
+
+Another consideration is to integrate a better Search Engine technology like Elasticsearch. 
+
+<br/>
+
+#### DataBase:
 
 MongoDB
 
-* Hosting:
+<br/>
 
-Scalability
+#### Hosting:
+
 
 
 
