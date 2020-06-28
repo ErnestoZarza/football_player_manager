@@ -5,4 +5,5 @@ WORKDIR /football_player_manager
 COPY requirements.txt /football_player_manager/
 RUN pip install -r requirements.txt
 COPY . /football_player_manager/
-EXPOSE 5000
+# EXPOSE 5000
+CMD start_code.sh
