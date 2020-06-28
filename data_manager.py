@@ -15,7 +15,7 @@ class DBConfig:
     DATABASE_NAME = os.getenv('MYSQL_DATABASE', 'football_players_db')
     DB_HOST = os.getenv('MYSQL_ROOT_HOST', 'db')
 
-    DB_URI = os.getenv('DATABASE_URL', "mysql+pymysql://{user}:{password}@{host}/{db_name}".format(user=DB_USERNAME, password=DB_PASSWORD,
+    DB_URI = os.getenv('CLEARDB_DATABASE_URL', "mysql+pymysql://{user}:{password}@{host}/{db_name}".format(user=DB_USERNAME, password=DB_PASSWORD,
                                                                          host=DB_HOST, db_name=DATABASE_NAME))
 
     SQLALCHEMY_DATABASE_URI = DB_URI
