@@ -2,6 +2,38 @@
 
 This project is a  Web Application Service that allows to retrieve information of football players.
 
+### Features:
+
+#### * Search Players:
+
+  Search engine that displays the players that match the search criteria. The “searchable” attributes are: **name**, **club** & **nationality**.
+
+The displayed attributes for a search result are the following:
+* Name
+* Age
+* Nationality
+* Club
+* Photo (Generic Picture)
+* Overall
+* Value
+       
+#### * Team Builder:
+       
+This feature shows a list of 11 players that constitute the best team one can have for this specific budget . The best player is defined by their overall score.
+
+**Positions:**
+* Goalkeeper: GK
+* Fullback: RCB, CB, LB, RB, RWB, LWB</li>
+* Halfback = RCM, LCM, LDM, CDM, LCB, RM, LM, RDM, CM</li>
+* Forward = RF, ST, LW, LF, RS, CAM, LS, LAM, RW, RAM, CF</li>
+       
+**Constraints:**
+* 1 GK</li>
+* 2 Fullback</li>
+* 3 Halfback</li>
+* 5 Forward</li>
+      
+<br/>
 
 ## Getting Started
 
@@ -17,6 +49,8 @@ This application was implemented using the following technologies:
 * [Docker](https://www.docker.com/) - Docker Containers.
 * [Heroku](https://www.heroku.com/) - Cloud platform for building Pythonic apps.
 
+<br/>
+
 
 ## Requirements
 
@@ -25,7 +59,7 @@ This application was implemented using the following technologies:
 
 <br/>
 
-## Running the application 
+## Running the application (Local)
 
 ### Docker Instructions
 
@@ -101,9 +135,18 @@ The link of the players' photos in the database is not correct, it seems that th
 
 <br/>
 
+
+## Web Application:
+
+This web application is hosted on Heroku. You can find it in the following link: http://football-players-manager.herokuapp.com/
+
+This application is not in production mode, eg. use_debugger=True (on purpose).
+
+<br/>
+
 ## Additional Questions:
 
-Q- What technology (apart from Python, which is required), DB, and tools did you use
+**Q-** What technology (apart from Python, which is required), DB, and tools did you use
 and why do you think it’s a good pick?
 <br/>
 
@@ -135,7 +178,7 @@ Werkzeug is a comprehensive WSGI web application library. Werkzeug is not a fram
 
 #### [SQLALchemy](https://www.sqlalchemy.org/) - Python SQL toolkit:
 
-**SQLAlchemy** is the Python SQL toolkit and Object Relational Mapper that gives application developers the full power and flexibility of SQL.
+SQLAlchemy is the Python SQL toolkit and Object Relational Mapper that gives application developers the full power and flexibility of SQL.
 
 It provides a full suite of well known enterprise-level persistence patterns, designed for efficient and high-performing database access, adapted into a simple and Pythonic domain language.
 
@@ -147,7 +190,7 @@ SQLAlchemy maintains a connection pool, with an open database connection being p
 
 #### [Pandas](https://pandas.pydata.org/) - Data Manipulation.
 
-**Pandas** is a Python package providing fast, flexible, and expressive data structures (data frames) designed to make working with “relational” or “labeled” data both easy and intuitive.
+Pandas is a Python package providing fast, flexible, and expressive data structures (data frames) designed to make working with “relational” or “labeled” data both easy and intuitive.
 
 **Advantages:**
 
@@ -173,7 +216,8 @@ Heroku Container Registry allows you to deploy your Docker images to Heroku in a
 - Easy to build a Docker images, as well as take advantage of Review Apps. Also, the possibility building Docker images using heroku.yml.
 
 <br/>
-Q- Let's say we want to add all the players created by users (between 5,000,000 to
+
+**Q-** Let's say we want to add all the players created by users (between 5,000,000 to
 20,000,000 new players per month) to the database. We also decide to add real-time
 updates to the player database. What tech stack will you use? (Language, DB,
 hosting, etc.) How would you make sure your tool is scalable for higher volumes?
@@ -187,6 +231,9 @@ hosting, etc.) How would you make sure your tool is scalable for higher volumes?
 If using **Python** would be a requirement for the project. I would strongly consider the use of a framework.
 
 For example Django provides a [django-filter](https://django-filter.readthedocs.io/en/stable/) package in order to add a hassle-free filtering to your views with a straightforward integration with the templates.
+
+Another point would be to consider a strong caching strategy. Many python web frameworks allow you to establish cache policies in order to achieve a better performance in the application.
+
 
 ##### Scala:
 
@@ -202,19 +249,32 @@ Companies like Twitter switched to Scala. They said: "Scala is extraordinarily s
 
 #### Search Engine
 
-Another consideration is to integrate a better Search Engine technology like Elasticsearch. 
+##### Elasticsearch:
+
+Another consideration is to integrate a more powerfull Search Engine technology like Elasticsearch. The speed and scalability of Elasticsearch and its ability to index many types of content mean that it can be used for a number of use cases. It provides scalable search, has near real-time search, and supports multitenancy.
 
 <br/>
 
 #### DataBase:
 
-MongoDB
+##### MongoDB:
+
+MySQL is highly-organized for its flexibility, high performance, reliable data protection and ease in management of data. Proper data indexing can resolve your issue with performance, facilitate interaction and ensure robustness. Many developers note that MySQL is quite slow in comparison to MongoDB when it comes to dealing with the large database. Hence, it is a better choice for users with small data volume and is looking for a more general solution as it is unable to cope with large and unstructured amounts of data. It allows users to query in a different manner that is more sensitive to workload.
+
+##### Alternative - Amazon Aurora: 
+
+Amazon Aurora is up to five times faster than standard MySQL databases and three times faster than standard PostgreSQL databases. It provides the security, availability, and reliability of commercial databases at 1/10th the cost. Amazon Aurora is fully managed by Amazon Relational Database Service (RDS), which automates time-consuming administration tasks like hardware provisioning, database setup, patching, and backups.
+
+Amazon Aurora is a MySQL and PostgreSQL-compatible relational database built for the cloud, that combines the performance and availability of traditional enterprise databases with the simplicity and cost-effectiveness of open source databases.
+
 
 <br/>
 
 #### Hosting:
 
+For this particular aspect I would consider any provider that allows for multiple replications and can provide a Zero-downtime Deployment. It would be a bonus point if can handle scaling automatically.
 
+Example: **Heroku**
 
 
 
