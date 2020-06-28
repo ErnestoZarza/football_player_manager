@@ -6,5 +6,4 @@ COPY requirements.txt /football_player_manager/
 RUN pip install -r requirements.txt
 COPY . /football_player_manager/
 # EXPOSE 5000
-CMD chmod +x ./start_code.sh
-CMD ./start_code.sh
+CMD python3 ./players_manager.py
