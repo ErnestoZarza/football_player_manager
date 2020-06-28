@@ -140,7 +140,7 @@ class DataManager:
         """
         sql_engine = create_engine(self.db_config.SQLALCHEMY_DATABASE_URI, pool_recycle=3600)
         db_connection = sql_engine.connect()
-        frame = pd.read_sql("SELECT * FROM Players", db_connection);
+        frame = pd.read_sql("SELECT * FROM Players", db_connection)
         pd.set_option('display.expand_frame_repr', False)
         db_connection.close()
         return frame
